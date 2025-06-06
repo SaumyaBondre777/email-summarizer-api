@@ -9,7 +9,7 @@ const router = express.Router();
 const llm = new ChatGroq({
   model: 'llama3-70b-8192', // correct model ID from Groq
   temperature: 0,
-  apiKey: "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",
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 // POST /summarize route
