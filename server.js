@@ -18,12 +18,13 @@ const llm = new ChatGroq({
 // Summarize Endpoint
 app.post('/summarize', async (req, res) => {
   try {
-    const { emailText } = req.body;
+    const emailText = req.body.emailText;
+    const wordCount = req.body.wordCount;
     if (!emailText) {
       return res.status(400).json({ error: 'Email text is required' });
     }
 
-    const prompt = `Summarize this email briefly and clearly:\n\n${emailText}`;
+    const prompt = `Summarize this email briefly and clearly:\n\n${emailText} in ${wordCount} number of words.`;
     const response = await llm.invoke(prompt);
 
     const summary = response.content || 'No summary generated';
