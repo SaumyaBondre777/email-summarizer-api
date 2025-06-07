@@ -24,7 +24,7 @@ app.post('/summarize', async (req, res) => {
       return res.status(400).json({ error: 'Email text is required' });
     }
 
-    const prompt = `Summarize this email briefly and clearly:\n\n${emailText} in ${wordCount} number of words.`;
+    const prompt = `Summarize this email briefly and clearly:\n\n${emailText} in exactly ${wordCount} number of words.`;
     const response = await llm.invoke(prompt);
 
     const summary = response.content || 'No summary generated';
